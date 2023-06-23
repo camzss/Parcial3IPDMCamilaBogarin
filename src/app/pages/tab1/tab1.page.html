@@ -1,0 +1,57 @@
+<ion-header class="page-header">
+  <ion-title class="page-title">
+    Clínica Veterinaria Kuarahy
+  </ion-title>
+  <ion-title>
+    Control de Vacunas
+  </ion-title>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item *ngIf="listaclientes">
+    <ion-select label="Clientes" interface="popover" placeholder="Selecciona una opción" [(ngModel)]="selectedClienteId" (ionChange)="onClienteSelected()">
+      <ion-select-option *ngFor="let item of listaclientes" [value]="item.ClienteID">
+        {{ item.NombreApelllido }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-select label="Mascotas" interface="popover" placeholder="Selecciona una opción" [(ngModel)]="selectedMascotaId">
+      <ion-select-option *ngFor="let mascota of listaMascotas" [value]="mascota.MascotaID">
+        {{ mascota.Nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button class="custom-button" fill="outline" color="dark" shape="round" (click)="verHistorial()">Ver historial</ion-button>
+  <ion-grid class="vacuna-grid">
+    <ion-row class="header-row">
+      <ion-col>
+        <ion-text color="light" class="header">Fecha Vacunación</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text color="light" class="header">Vacuna</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text color="light" class="header">Fecha próxima vacuna</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text color="light" class="header">Costo</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let vacuna of listaVacunas" class="data-row">
+      <ion-col>
+        {{ vacuna.FechaVacunacion }}
+      </ion-col>
+      <ion-col>
+        {{ vacuna.vacuna }}
+      </ion-col>
+      <ion-col>
+       
+      </ion-col>
+      <ion-col>
+        {{ vacuna.costo }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
